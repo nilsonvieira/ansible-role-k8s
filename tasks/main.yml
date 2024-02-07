@@ -16,7 +16,7 @@
     state: present
     keyring: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
-- name: Add Repos K8s Lens
+- name: Add Repos Kubernetes
   apt_repository:
     repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /
     state: present
