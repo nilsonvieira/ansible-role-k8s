@@ -1,0 +1,13 @@
+---
+galaxy_info:
+  author: Nilson R S Vieira
+  description: Role to install k8s Needed Packs to Manage Sites.
+  min_ansible_version: '2.12'
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+  galaxy_tags:
+    - k8s
+dependencies: []

@@ -1,0 +1,37 @@
+- name: Add Apt key K8s Lens
+  apt_key:
+    url: https://downloads.k8slens.dev/keys/gpg
+    state: present
+    keyring: /usr/share/keyrings/lens-archive-keyring.gpg
+
+- name: Add Repos K8s Lens
+  apt_repository:
+    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] https://downloads.k8slens.dev/apt/debian stable main
+    state: present
+    filename: lens
+
+- name: Add Apt key Kubernetes
+  apt_key:
+    url: https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key
+    state: present
+    keyring: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+- name: Add Repos K8s Lens
+  apt_repository:
+    repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /
+    state: present
+    filename: kubernetes
+
+- name: Install K8s Packages 
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+      - lens
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - kubectl
